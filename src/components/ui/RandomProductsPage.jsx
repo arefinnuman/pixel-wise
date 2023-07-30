@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const RandomProductsPage = ({ product }) => {
-  const { image, productName, category, price, status, averageRating } =
+  const { image, productName, category, price, status, averageRating, _id } =
     product;
 
   return (
@@ -26,10 +27,17 @@ const RandomProductsPage = ({ product }) => {
           <h3 className="flex-1 py-2 text-lg font-semibold leadi">
             {productName}
           </h3>
-          <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-800">
-            <span className="font-bold">$ {price}</span>
+          <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-800 items-center ">
+            <span className="font-bold">${price}</span>
             <span>{status}</span>
-            <span>averageRating</span>
+            <span>
+              <Link
+                href={`/products/${_id}`}
+                className="btn btn-sm btn-primary btn-outline"
+              >
+                Details
+              </Link>
+            </span>
           </div>
         </div>
       </article>

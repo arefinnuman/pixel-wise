@@ -1,6 +1,10 @@
+import { useGetCatagoriesNameQuery } from "@/redux/api/api";
 import Link from "next/link";
 
 const Navbar = () => {
+  const { data } = useGetCatagoriesNameQuery();
+  const categoriesNames = data?.data;
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -28,12 +32,11 @@ const Navbar = () => {
             <li>
               <a>Parent</a>
               <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
+                {categoriesNames?.map((category) => (
+                  <li key={category._id}>
+                    <Link href={`categories/${category}`}>{category}</Link>
+                  </li>
+                ))}
               </ul>
             </li>
             <li>
@@ -54,12 +57,11 @@ const Navbar = () => {
             <details>
               <summary>Categories</summary>
               <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
+                {categoriesNames?.map((category) => (
+                  <li key={category._id}>
+                    <Link href={`/category/${category}`}>{category}</Link>
+                  </li>
+                ))}
               </ul>
             </details>
           </li>

@@ -1,9 +1,11 @@
 import RootLayout from "@/components/layout/RootLayout";
+import HomeHero from "@/components/ui/HomeHero";
 import RandomProductsPage from "@/components/ui/RandomProductsPage";
 
 export default function HomePage({ randomProducts }) {
   return (
-    <div>
+    <>
+      <HomeHero />
       <h1 className="text-4xl font-extrabold text-center my-6">
         Featured Products
       </h1>
@@ -12,7 +14,7 @@ export default function HomePage({ randomProducts }) {
           <RandomProductsPage key={product._id} product={product} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
