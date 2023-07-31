@@ -23,7 +23,9 @@ HomePage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:5555/api/v1/products/random");
+  const res = await fetch(
+    "https://pixel-wise-server-side.vercel.app/api/v1/products/random"
+  );
   const data = await res.json();
 
   return {

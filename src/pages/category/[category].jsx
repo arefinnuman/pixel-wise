@@ -18,7 +18,9 @@ CategoriesPage.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5555/api/v1/products/");
+  const res = await fetch(
+    "https://pixel-wise-server-side.vercel.app/api/v1/products/"
+  );
   const data = await res.json();
 
   const products = data?.data;
@@ -38,7 +40,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:5555/api/v1/products/${params.category}`
+    `https://pixel-wise-server-side.vercel.app/api/v1/products/${params.category}`
   );
   const data = await res.json();
 

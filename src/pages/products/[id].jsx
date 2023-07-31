@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-
 import RootLayout from "@/components/layout/RootLayout";
+import Image from "next/image";
 
 const ProductDetailPage = ({ productData }) => {
   const {
@@ -19,7 +17,9 @@ const ProductDetailPage = ({ productData }) => {
     <div>
       <div className="hero min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 flex justify-center items-center my-10">
         <div className="hero-content flex-col lg:flex-row-reverse bg-white rounded-lg shadow-lg p-8 max-w-3xl">
-          <img
+          <Image
+            width={500}
+            height={500}
             src={image}
             alt="Product"
             className="w-1/2   lg:h-auto rounded-lg shadow-2xl mx-auto lg:mx-0 lg:ml-8"
@@ -66,7 +66,7 @@ ProductDetailPage.getLayout = function getLayout(page) {
 export const getServerSideProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:5555/api/v1/products/all-products/${params.id}`
+    `https://pixel-wise-server-side.vercel.app/api/v1/products/all-products/${params.id}`
   );
   const data = await res.json();
 
