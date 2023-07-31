@@ -1,4 +1,5 @@
 import { useGetCatagoriesNameQuery } from "@/redux/api/api";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -75,6 +76,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <a className="btn btn-primary btn-outline">PC Builder</a>
+        <button
+          className="btn btn-secondary btn-outline ml-2"
+          onClick={() => signIn()}
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   );

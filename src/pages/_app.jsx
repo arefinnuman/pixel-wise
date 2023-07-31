@@ -1,5 +1,6 @@
 import store from "@/redux/store";
 import "@/styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 import { Roboto } from "next/font/google";
 import Head from "next/head";
 import { Provider } from "react-redux";
@@ -17,9 +18,12 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Pixel Wise</title>
       </Head>
+
       <div className={roboto.className}>
         <Provider store={store}>
-          {getLayout(<Component {...pageProps} />)}
+          <SessionProvider session={pageProps.session}>
+            {getLayout(<Component {...pageProps} />)}
+          </SessionProvider>
         </Provider>
       </div>
     </>
