@@ -1,10 +1,13 @@
 import { useGetCatagoriesNameQuery } from "@/redux/api/api";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 const Navbar = () => {
   const { data } = useGetCatagoriesNameQuery();
   const categoriesNames = data?.data;
+
+  const { data: session } = useSession();
+  console.log(session?.user?.name);
 
   return (
     <div className="navbar bg-base-100">
@@ -74,14 +77,29 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      <button></button>
       <div className="navbar-end">
         <a className="btn btn-primary btn-outline">PC Builder</a>
-        <button
-          className="btn btn-secondary btn-outline ml-2"
-          onClick={() => signIn()}
-        >
-          Sign Up
-        </button>
+
+        {session?.user?.name ? (
+          <>
+            <button
+              onClick={() => signOut()}
+              className="btn btn-secondary-focus btn-outline ml-2"
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => signIn()}
+              className="btn btn-secondary-focus btn-outline ml-2"
+            >
+              Sign In
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
